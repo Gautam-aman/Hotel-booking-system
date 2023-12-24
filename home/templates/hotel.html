@@ -1,921 +1,1063 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Website</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Hotel Booking </title>
+
     <style>
 
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&display=swap');
-
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-html,
+      /* grouped css attributes via type */
 body {
-    font-family: 'Roboto Slab', serif;
-    scroll-behavior: smooth;
+  font-family: "Lato", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  background: #fff;
+  color: #777;
 }
 
-li {
-    list-style: none;
+/* nav */
+nav {
+  margin-bottom: 1rem;
 }
 
-a {
-    text-decoration: none;
-
+nav a {
+  color: white;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
-.container {
-    max-width: 90%;
-    margin: auto;
-    order: 1;
-}
-
-
-.head_container {
-    max-width: 90%;
-    margin: auto;
-}
-
-
-header {
-    height: 14vh;
-    background-color: white;
-    z-index:1000
-}
-
-.logo img {
-    width: 120px;
-}
-
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-}
-
-
-.hamburger {
-    display: none;
-}
-
-.bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    transition: all 0.3s ease-in-out;
-    background-color: black;
-
-}
-
-header ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header ul li {
-    margin-left: 3rem;
-}
-
-header ul li a {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: black;
-    transition: 0.5s;
-}
-
-header ul li a:hover {
-    color: #C1B086;
-}
-
-#navigation-menu    {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-
-@media only screen and (max-width: 768px) {
-    header ul {
-        display: block;
-        position: fixed;
-        left: -100%;
-        top: 7rem;
-        flex-direction: column;
-        background-color: #fff;
-        width: 100%;
-        border-radius: 10px;
-        text-align: center;
-        transition: 0.5s;
-        box-shadow: 0 10px 27px #000;
-        z-index: 20;
-    }
-
-
-    header ul.active {
-        left: 0%;
-    }
-
-    header ul li {
-        margin: 2.5rem 0;
-    }
-
-    header ul li a {
-        color: black;
-    }
-
-    .hamburger {
-        display: block;
-        cursor: pointer;
-    }
-
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-
-    }
-
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-
-    }
-
-}
-
-.location-ask   {
-    margin: 130px 3%;
-}
-
-
-.where-to   {
-    font-weight: bold;
-}
-
-.required   {
-    font-weight: lighter;
-}
-
-.location   {
-    width: 840.53px;
-    height: 43.2px;
-
-}
-
-
-input{
-    height: 30px;
-    border-color: #E6E6E6;
-}
-
-.booking{
-    display: inline-block;
-}
-
-
-.btn find-hotel {
-    color: white;
-    background-color: black;
-}
-
-.btn{
-  backface-visibility: hidden;
-  background-color: #fff;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: black;
-  cursor: pointer;
-  font-size: 90%;
-  height: 44px;
-  margin: 12px 0 0;
+nav a:hover,
+a:active,
+a:focus {
+  color: red;
   outline: none;
-  overflow: hidden;
-  padding: 0 10px;
-  width: 19vh;
-
+  text-decoration: none;
 }
 
+/* jumbotron*/
+.colorful {
+  background: #4b79a1;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #283e51, #4b79a1);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #283e51, #4b79a1);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 0px;
+  padding: 0px 0 1rem 0 !important;
+}
 
-.date-popup {
-    width: 700px;
-    height: 550px;
-    background: #fff;
-    border-style: solid;
-    border-radius: 6px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
+.form-card {
+  background: #fff;
+  border-bottom: 7px solid #1e3c72;
+  border-top: 7px solid #1e3c72;
+  color: black;
+  padding: 0 2rem;
+}
+
+.form-card h3 {
+  color: #000;
+  padding: 1rem 0 0.1rem 0;
+}
+
+/* hotel card */
+.hotel-card {
+  border: none !important;
+}
+.hotel-card .card-img-top {
+  border-radius: 0px;
+  height: 230px;
+}
+
+.hotel-card .card-body {
+  padding: 0px !important;
+}
+
+.hotel-card .card-body h5 {
+  margin: 0.5rem 0;
+}
+
+.hotel-card .card-body h5 a {
+  color: #777;
+}
+
+.hotel-card .card-body p {
+  font-size: 0.9rem;
+}
+/* end of hotel cards */
+
+/* business process section */
+#process {
+  background: #2980b9;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2c3e50, #2980b9);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2c3e50, #2980b9);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #fff;
+}
+
+#process h2,
+h3 {
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  margin: 1rem 0;
+  padding: 0 0 1rem 0;
+}
+
+#process h2 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+#process h3 {
+  font-size: 1.7rem;
+}
+
+#process p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.icon {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 33px 29px;
+
+  background: #2980b9;
+  color: #fff;
+}
+
+#process .icon {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#process .icon .fa {
+  font-size: 2rem;
+  margin: 11px 2px;
+}
+
+#process .process-step {
+  text-align: center;
+}
+
+#process .process-step h3 {
+  color: white;
+  margin-top: 2.2rem;
+}
+
+#stat-counter {
+  text-align: center;
+}
+#stat-counter h2 {
+  font-size: 3rem;
+
+  border-bottom: 1px solid #777;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+#stat-counter p {
+  padding-top: 1rem;
+}
+
+#stat-counter .counter {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #2980b9;
+  font-size: 50px;
+  font-weight: 100;
+}
+
+#subscribe-panel {
+  background: #1e3c72; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #2a5298,
+    #1e3c72
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #2a5298,
+    #1e3c72
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  padding: 5rem 1rem;
+}
+
+#subscribe-panel h2 {
+  position: relative;
+
+  margin-bottom: 10px;
+
+  color: white;
+  line-height: 1.5;
+  font-size: 50px;
+  font-weight: 300;
+}
+
+#subscribe-panel.form-control {
+  width: 100%;
+
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+
+  background: #fff;
+  color: #fff;
+  font-size: 16px !important;
+}
+
+#subscribe-panel.form-control:focus {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+#subscribe-panel.form-control::-webkit-input-placeholder,
+#subscribe-panel.form-control:-moz-placeholder,
+#subscribe-panel.form-control::-moz-placeholder,
+#subscribe-panel.form-control:-ms-input-placeholder {
+  color: #fff;
+}
+
+#subscribe-panel.btn {
+  height: 46px;
+  border: none !important;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  background: #09c6ab;
+
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+#subscribe-panel.form-inline .form-group {
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+#subscribe-panel.form-inline .form-group .form-control {
+  width: 100%;
+}
+
+#subscribe-panel.gtco-heading {
+  margin-bottom: 30px;
+}
+
+#subscribe-panel.gtco-heading h2 {
+  color: #fff;
+}
+
+#subscribe-panel.gtco-heading p {
+  color: rgba(255, 255, 255, 0.5);
+}
+.copyright {
+  background: #005c97; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #363795,
+    #005c97
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #363795,
+    #005c97
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.copyright h3 {
+  color: #fff;
+  font-size: 2.5rem;
+}
+.copyright p {
+  color: #fff;
+}
+
+.footer-nav a {
+  color: #777;
+}
+
+/* destination page */
+.destination-container {
+  height: 70vh;
+  padding: 7rem;
+}
+
+.hotels-form {
+  background: #283e51; /* fallback for old browsers */
+  padding: 1rem;
+}
+
+.hotels-container {
+  padding: 0.5rem 0 7rem 0;
+}
+
+.search-container {
+  background: #d3d3d3;
+}
+
+.search-card-result {
+  box-shadow: 0px 1px 4px rgba(41, 51, 57, 0.5);
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  background-color: #fff;
+}
+.search-card-result img {
+  height: 190px;
+}
+.search-card-result h5 {
+  font-style: 1.1rem;
+  font-weight: 700;
+}
+.search-card-result p {
+  font-size: 0.9rem;
+}
+
+.search-card-result .more-offers p {
+  margin-bottom: 0.3rem;
+}
+
+.more-offers .additional {
+  padding-top: 0.2rem;
+  font-weight: 700;
+}
+
+.fa.checked {
+  color: orange;
+}
+
+.map-container-btn {
+  height: 100px;
+
+  box-shadow: 0px 1px 4px rgba(41, 51, 57, 0.5);
+  background-color: wheat;
+}
+
+.map-container-btn .btn {
+  margin-top: 30px;
+}
+
+.filter-card {
+  padding: 0;
+  background: #fff;
+  color: black;
+}
+
+.filter-card h5 {
+  margin: 10px 0;
+  padding: 1rem;
+
+  box-shadow: 0px 1px 4px rgba(41, 51, 57, 0.5);
+  color: #000;
+}
+.filter-card form {
+  box-shadow: 0px 1px 4px rgba(41, 51, 57, 0.5);
+  padding: 0.5rem 2rem;
+}
+.map-btn {
+  background-color: #fff !important;
+}
+
+/* SOCIAL ICONS.CSS */
+
+  .nav .fa {
+    margin: 5px 2px;
+    padding: 20px;
+    
+    font-size: 30px;
     text-align: center;
-    padding: 0 30px 30px;
-    color: #333;
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
-}
-
-.date-open-popup {
-    visibility: visible;
-    top: 55%;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.date-popup h2{
-    font-size: 18px;
-    font-weight: 500;
-    margin: 30px 0 10px;
-}
-
-.date-popup button  {
-    width: 100%;
-    margin-top: 50px;
-    padding: 10px 0;
-    background: #6fd649;
-    color: #fff;
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-
-.room-popup {
-    width: 400px;
-    background: #fff;
-    border-style: solid;
-    border-radius: 6px;
-    position: absolute;
-    margin-top: 30px;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
-    text-align: center;
-    padding: 0 30px 30px;
-    color: #333;
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
-}
-
-.room-open-popup {
-    visibility: visible;
-    top: 40%;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.room-popup h2{
-    font-size: 38px;
-    font-weight: 500;
-    margin: 30px 0 10px;
-}
-
-.room-popup button  {
-    width: 100%;
-    margin-top: 50px;
-    padding: 10px 0;
-    background: #6fd649;
-    color: #fff;
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-
-.rates-popup {
-    width: 400px;
-    background: #fff;
-    border-style: solid;
-    border-radius: 6px;
-    position: absolute;
-    top: 0;
-    margin-top: 30px;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
-    text-align: center;
-    padding: 0 30px 30px;
-    color: #333;
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
-}
-
-.rates-open-popup {
-    visibility: visible;
-    top: 55%;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.rates-popup h2{
-    font-size: 38px;
-    font-weight: 500;
-    margin: 30px 0 10px;
-}
-
-.rates-popup button  {
-    width: 100%;
-    margin-top: 50px;
-    padding: 10px 0;
-    background: #6fd649;
-    color: #fff;
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.find-hotels {
-    background-color: #000;
-    color: #fff
-}
-
-
-.container-room {
-    display: flex;
-    flex-direction: column;
-
-}
-
-
-input[type="number"] {
-    height: 32px;
-    border-radius: 4px;
-    border: 1px solid #d8d8d8;
-    position: relative;
-    text-align: center;
-    font-size: 20px;
-    width: 80px;
-    outline: none;
-    background-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20viewBox%3D%220%200%2050%2067%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20stroke-width%3D%222%22%3E%3Cline%20x1%3D%221%22%20x2%3D%2250%22%20y1%3D%2233.5%22%20y2%3D%2233.5%22%20stroke%3D%22%23D8D8D8%22%2F%3E%3Cpolyline%20transform%3D%22translate(25%2020)%20rotate(45)%20translate(-25%20-20)%22%20points%3D%2219%2026%2019%2014%2032%2014%22%20stroke%3D%22%23000%22%2F%3E%3Cpolyline%20transform%3D%22translate(25%2045)%20rotate(225)%20translate(-25%20-45)%22%20points%3D%2219%2052%2019%2039%2032%2039%22%20stroke%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
-    background-position: center right;
-    background-size: contain;
-    background-repeat: no-repeat;
-    caret-color: transparent;
-  }
-
-  input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
-    opacity: 1 !important;
-    background: transparent !important;
-    border-width: 0px;
-    margin: 0;
-    border-left: 1px solid #d8d8d8;
-    height: 34px;
-    width: 23px;
-    cursor: pointer;
-  }
-
-
-  input[type=text], textarea {
-    outline: none;
-    padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
-    border: 1px solid #DDDDDD;
-  }
-
-  input[type=text]:focus, textarea:focus {
-    box-shadow: 0 0 5px rgb(15, 201, 253);
-    padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
-    border: 1px solid rgb(15, 201, 253);
-  }
-
-
-
-  .special-rates-checkbox{
-    font-size: 0.9rem;
-    font-weight: bold;
-    line-height: 1.1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5em;
-  }
-
-
-
-  .hotel-front {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-
-  .hotel-front-container {
-    padding-top: 50px;
-  }
-
-  .welcome-text h2 {
-    padding-top: 30px;
-    text-align: center;
-    font-size:xx-large;
-
-  }
-
-  .welcome-text p {
-    color: #333;
-    padding-top: 10px;
-    text-align: center;
-    font-size: large;
-  }
-
-  .welcome-text button {
-    color: #fff;
-    background-color: #000;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-.subheading {
-    padding-top: 100px
-}
-
-.subheading h2 {
-    padding-top: 30px;
-    font-size:xx-large;
-  }
-
-  .subheading p {
-    color: #333;
-    padding-top: 10px;
-    font-size: large;
-  }
-
-
-
-
-  .destinations-images {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 30px;
-    max-width: 100%;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-
-
-  }
-
-  .destinations-images img {
-    width: 21.5vw;
-    height: 60vh;
-  }
-
-
-  .country {
-    position: relative;
-    text-align: center;
-    color: white;
-    margin-right: 20px;
-    cursor: pointer;
-
-  }
-
-  .country img {
-    filter: brightness(80%);
-  }
-
-  .country-text {
-    font-size: 39px;
-    font-family: 'Bebas Neue', sans-serif;
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: top 250ms;
-  }
-
-
-  .hover-country-text {
-    top: 50%;
-  }
-
-
-  .experience-images {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 30px;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-
-
-  }
-
-  .experience-images img {
-    width: 29vw;
-    height: 39.5vh;
-    min-width: 100px;
-  }
-
-
-  .experience {
-    position: relative;
-    text-align: center;
-    color: white;
-    margin-right: 20px;
-    cursor: pointer;
-
-  }
-
-  .experience img {
-    filter: brightness(80%);
-    padding-top: 20px;
-  }
-
-  .experience-text {
-    font-size: 39px;
-    font-family: 'Bebas Neue', sans-serif;
-    position: absolute;
-    width: 100%;
-    top: 85%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: top 250ms;
-  }
-
-  .hover-experience-text {
-    top: 55%;
-  }
-
-  .different-hotels {
-    padding-top: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center
-
-  }
-
-  .different-hotels img{
-    width: 49.243vw ;
-    height: 66.488vh;
-  }
-
-  .different-hotels div{
-    padding-left: 50px;
-  }
-
-  .different-hotels h2 {
-    font-size: 36px;
-    font-family: 'Bebas Neue', sans-serif;
-  }
-
-  .different-hotels p {
-    padding-top: 20px;
-    font-size: 20px;
-    font-family: 'Open Sans', sans-serif;
-    padding-bottom: 30px;
-  }
-
-  .different-hotels button {
-    background-color: #000;
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  .back-to-top {
-    padding-top: 80px;
-    text-align: center;
-  }
-
-  .back-to-top button{
-    background-color: #000;
-    color: #fff;
-    width: 15%;
-  }
-
-
-  .footer-line {
-    margin-top: 50px;
-    border: 0;
-    border-top: 1px solid #c9c7c7;
-  }
-
-
-  .footer {
-    width: 100%;
-    padding: 50px 5%;
-    background-color: #fff;
-    display: grid;
-    grid-template-columns: 8fr 3fr 3fr;
-    align-items: start;
-
-  }
-
-
-.col-1 button {
-    border: 0;
-    background-color: #104C97;
-    color: #fff;
-    width: 162px;
-}
-
-
-
-  .col-2 a{
-    display: block;
     text-decoration: none;
-    font-size: 14px;
-    padding-top: 12px;
-    color: #686868;
-
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  
+  .fa-google {
+    background: #dd4b39;
+    color: white;
+  }
+  
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+  
+  .fa-instagram {
+    background: #DA4453;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #89216B, #DA4453);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #89216B, #DA4453); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    color: white;
+  }
+  
+  .fa-pinterest {
+    background: #cb2027;
+    color: white;
+  }
+  
+  .fa-snapchat-ghost {
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
 
-  .col-3 a{
-    display: block;
-    text-decoration: none;
-    font-size: 14px;
-    padding-top: 12px;
-    color: #686868;
-  }
+ .slidecontainer {
+    width: 100%;
+}
 
-  .footer div h3 {
-    font-weight: 300;
-    margin-bottom: 30px;
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
 
-  }
+.slider:hover {
+    opacity: 1;
+}
 
-  .social-icons {
-    margin-top: 30px;
-  }
-
-  .social-icons i{
-    font-size: 22px;
-    margin: 10px;
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+  
+  background: #1e3c72;
     cursor: pointer;
-  }
+}
 
-  @media (max-width: 1208px) {
-    .destinations-images img{
-      width: 404.59px;
-      height: 539.45px;
-    }
-
-    .experience-images img {
-      width: 404.59px;
-      height: 269.72;
-    }
-
-    .different-hotels {
-      display: block;
-
-    }
-
-    .different-hotels img{
-      width: 100%;
-      height: auto;
-
-    }
-  }
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+  
+  background: #1e3c72;
+    cursor: pointer;
+}
 
     </style>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/b8a58bc95c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
-</head>
-<body>
-    <header class="header" id="navigation-menu">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/logo.jpeg" alt="logo image">
-                </a>
-                <ul class="nav-menu">
-                    <li> <a href="#home" class="nav-list">Hotels</a> </li>
-                    <li> <a href="#destinations" class="nav-list">Destinations</a> </li>
-                    <li> <a href="#offers" class="nav-list">Offers</a> </li>
-                    <li> <a href="#travel-experience" class="nav-list">Travel Experiences</a> </li>
-                    <li> <a href="#meetings-events" class="nav-list">Meeting & Events</a> </li>
-                </ul>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
 
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </nav>
-        </div>
+    <!-- jumbotron and nav -->
+	<section class="colorful jumbotron mb-0" role="banner">
+		<nav class="navbar navbar-expand-lg justify-content-between navbar-dark" role="navigation">
+			<div class="navbar-brand">
+				<a href="index.html">Hotel Spoof
+					<em>.</em>
+				</a>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+			    aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="col-lg-6 text-right menu-1 collapse navbar-collapse justify-content-end" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="pricing.html">Search</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="destination.html">Destinations</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">Continents</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="continent.html">Europe</a>
+							<a class="dropdown-item" href="continent.html">Asia</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="continent.html">America</a>
+							<a class="dropdown-item" href="continent.html">Canada</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contact.html">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-    </header>
+		<div class="container hotels-container">
 
-    <div class="location-ask">
-        <span class="where-to">Where to?</span> <span class="required">(Required) </span> <br />
-    <div class="booking">
+			<div class="row mt-2 justify-content-between">
+				<div class="col-md-8 text-white align-self-center mb-2 p-4">
+					<h1>HOTEL Place</h1>
+					<span class="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum debitis perspiciatis sed iusto
+						eveniet neque natus quidem velit optio cumque saepe repudiandae vero, sit hic adipisci laudantium libero blanditiis
+						animi.
+					</span>
+				</div>
+				<div class="col-md-4">
+					<div class=" form-card">
+						<h3>Find Hotels</h3>
+						<form action="#">
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="destination">Destination</label>
+									<input type="text" name="destination" id="destination" class="form-control">
 
-            <label class="location-label"></label>
-            <input type="text" class="location" placeholder="City, state, location, or airport" required>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="activities">Activities</label>
+									<select name="#" id="activities" class="form-control">
+										<option value="">All</option>
+										<option value="">Activities</option>
+										<option value="">Hiking</option>
+										<option value="">Caving</option>
+										<option value="">Swimming</option>
+									</select>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<input type="submit" class="btn btn-primary btn-block" value="Find">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-            <button type="submit" class="btn date" onclick="dateOpenPopup()">Date</button>
-            <div class="date-popup" id="date-popup">
-                <h2>Select Date</h2>
-                <input type="text" id="datepicker">
-                <button type="button" onclick="dateClosePopup()">OK</button>
-            </div>
+	<section class="search-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="row my-3">
+						<div class="col-sm-12 map-container-btn text-center">
+							<input name="map" id="" class="btn btn-outline-secondary map-btn" type="button" value="map">
+						</div>
+					</div>
+					<div class="row mt-2 justify-content-between">
+						<div class="filter-card">
+							<h5>Filter</h5>
+							<form action="#">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="mintopay">Check in</label>
+										<p>
+											<input type="date" name="checkin" id="checkin" class="form-control">
+										</p>
+									</div>
+									<div class="col-md-12">
+										<label for="maxtopay">Check out</label>
+										<p>
+											<input type="date" name="checkout" id="checkout" class="form-control">
+										</p>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="date-start">Price Range</label>: £
+										<span id="price" class="price">1000</span>
+										<input type="range" min="23" max="1000" value="1000" class="slider" id="myRange">
+										</p>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<input type="submit" class="btn btn-primary btn-block" value="Limit">
+									</div>
+								</div>
+							</form>
+						</div>
 
-            <button type="submit" class="btn room" onclick="roomOpenPopup()">Rooms & Guests</button>
-            <div class="room-popup" id="room-popup">
-                <h2>Rooms and Guests</h2>
-                <div class="container-room">
-                <form>
-                    <label for="rooms">Rooms:</label>
-                    <input type="number" id="rooms" value=1><br><br>
-                    <label for="adults">Adults:</label>
-                    <input type="number" id="adults" value=1><br><br>
-                    <label for="kids">Kids:</label>
-                    <input type="number" id="kids" value=0><br><br>
-                </form>
-                <button type="button" onclick="roomClosePopup()">OK</button>
-
-            </div>
-            </div>
-            <button type="submit" class="btn special-rates" onclick="ratesOpenPopup()">Special Rates</button>
-            <div class="rates-popup" id="rates-popup">
-                <h2>Special Rates</h2>
-                <form class="special-rates-checkbox">
-                    <label class="special-rates-checkbox">Use Points
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="special-rates-checkbox">Travel Agents
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="special-rates-checkbox">AAA Rate
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="special-rates-checkbox">AARP Rate
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="special-rates-checkbox">Senior Rate
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="special-rates-checkbox">Government / Military Rates
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                </form>
-                    <form class="special-rates-text">
-
-                        <label for="promotion-code">Promotion Code</label><br>
-                        <input type="text" id="promotion-code"><br><br>
-                        <label for="group-code">Group Code</label><br>
-                        <input type="text" id="group-code"><br><br>
-                        <label for="corporate-account">Corporate Account</label><br>
-                        <input type="text" id="corporate-account"><br><br>
-
-                    </form>
+					</div>
+				</div>
 
 
-                <button type="button" onclick="ratesClosePopup()">OK</button>
-            </div>
 
-            <button type="submit" class="btn find-hotels">Find a Hotel</button>
+				<div class="col-lg-9  px-4">
+					<div class="row mt-3">
+						<div class="col-md-6 align-self-center">
+							<p class="m-0">
+								<b>123</b> out of 1987</p>
+						</div>
+						<div class="col-md-6">
+							<div class="form-inline">
+								<label class="m-4" for="exampleFormControlSelect1">Sort by</label>
+								<select class="form-control" id="exampleFormControlSelect1">
+									<option>Recommended</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
 
-    </div>
+						</div>
+					</div>
 
-    <div class="hotel-front-container">
-        <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/hotel_front.jpg" alt="picture of the front of the hotel" class="hotel-front">
-       </div>
+					<div class="row search-card-result">
+						<div class="col-md-3">
+							<img class="img-fluid" src="/Users/rigelsmacbook/django/projects/hotel/home/media/1.jpg" alt="Card image cap">
+						</div>
+						<div class="col-md-5">
+							<h5>{{hotel_obj.hotel_name}}</h5>
+							<div class="review">
 
-       <div class="welcome-text">
-        <h2>Beautiful Brazil</h2>
-        <p>Nestled amidst the lush tropical beauty of Brazil, this hotel offers a perfect blend of luxury, comfort, and the enchanting allure of the country's vibrant culture.</p>
-        <button class="btn">Explore More</button>
-       </div>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<p>Join over 1 Million of users. Dignissimos asperiores vitae velit veniam</p>
+							<p>
+								<span class="badge badge-primary">8.5</span> Excellent (2323 reviews)</p>
+							<p>
+								<i class="fa fa-bath"></i>
+								<i class="fa fa-phone"></i>
+								<i class="fa fa-wifi"></i>
+								<i class="fa fa-tv"></i>
+							</p>
+						</div>
+						<div class="col-md-2 border-left text-center more-offers">
+							<p>place.com</p>
+							<p>
+								<s>£123</s>
+							</p>
+							<p>Place.com</p>
+							<p>£65</p>
+							<p class="border-top additional">More Deals from £65</p>
+						</div>
+						<div class="col-md-2 border-left text-center more-offers">
+							<h4>
+								<span class="badge badge-success">Top Deal</span>
+							</h4>
+							<div class="text-warning">
+								<p>place.com</p>
+								<p>
+									<s>£123</s>
+								</p>
 
-       <div class="subheading">
-        <h2>Exhilarating Destinations</h2>
-        <p>Here is a journey through some of the most wonderful places on Earth.</p>
-       </div>
+							</div>
+							<div class="text-success">
+								<p>Place.com</p>
+								<h5>£65</h5>
+							</div>
 
-       <div class="destinations-images">
+							<div class="btn btn-success">View deal ></div>
+						</div>
+					</div>
+					<div class="row search-card-result">
+						<div class="col-md-3">
+							<img class="img-fluid" src="home/media/2.jpg" alt="Card image cap">
+						</div>
+						<div class="col-md-5">
+							<h5>Choose The Best Plan For You</h5>
+							<div class="review">
 
-        <div class="country" id="italy-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/italy-hotel.jpg" alt="italy hotel" >
-            <div class="country-text" id="italy-text">ITALY</div>
-        </div>
-        <div class="country" id="portugal-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/portugal-hotel.jpg" alt="portugal hotel" >
-            <div class="country-text" id="portugal-text">PORTUGAL</div>
-        </div>
-        <div class="country" id="japan-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/japan-hotel.jpg" alt="japan hotel" >
-            <div class="country-text" id="japan-text">JAPAN</div>
-        </div>
-        <div class="country" id="egypt-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/egypt-hotel.jpg" alt="egypt hotel" >
-            <div class="country-text" id="egypt-text">EGYPT</div>
-        </div>
-       </div>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<p>Join over 1 Million of users. Dignissimos asperiores vitae velit veniam</p>
+							<p>
+								<span class="badge badge-primary">8.5</span> Excellent (2323 reviews)</p>
+							<p>
+								<i class="fa fa-bath"></i>
+								<i class="fa fa-phone"></i>
+								<i class="fa fa-wifi"></i>
+								<i class="fa fa-tv"></i>
+							</p>
+						</div>
+						<div class="col-md-2 border-left text-center more-offers">
+							<p>place.com</p>
+							<p>
+								<s>£123</s>
+							</p>
+							<p>Place.com</p>
+							<p>£65</p>
+							<p class="border-top additional">More Deals from £65</p>
+						</div>
+						<div class="col-md-2 border-left text-center more-offers">
+							<h4>
+								<span class="badge badge-success">Top Deal</span>
+							</h4>
+							<div class="text-warning">
+								<p>place.com</p>
+								<p>
+									<s>£123</s>
+								</p>
 
-       <div class="subheading">
-        <h2>Experience Something New</h2>
-        <p>The unknown beckons us, and our imaginations run wild with possibilities</p>
-       </div>
+							</div>
+							<div class="text-success">
+								<p>Place.com</p>
+								<h5>£65</h5>
+							</div>
 
-       <div class="experience-images">
-        <div class="experience" id="discount-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/discount.jpg" alt="discount picture" >
-            <div class="experience-text" id="discount-text">ADVANCE PURCHASE DISCOUNT</div>
-        </div>
-        <div class="experience" id="points-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/points.jpg" alt="points picture" >
-            <div class="experience-text" id="points-text">MULTIPLY YOUR POINTS</div>
-        </div>
-        <div class="experience" id="parking-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/parking.jpg" alt="parking picture" >
-            <div class="experience-text" id="parking-text">PARKING & STAY</div>
-        </div>
-        <div class="experience" id="plan-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/plan.jpg" alt="plan picture" >
-            <div class="experience-text" id="plan-text">PLAN AND SAVE</div>
-        </div>
-        <div class="experience" id="first-time-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/first-time.jpg" alt="first-time picture" >
-            <div class="experience-text" id="first-time-text">FIRST TIME DISCOUNTS</div>
-        </div>
-        <div class="experience" id="members-div">
-            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/front-desk.jpg" alt="members picture" >
-            <div class="experience-text" id="members-text">MEMBERS GET MORE</div>
-        </div>
-       </div>
+							<div class="btn btn-success">View deal ></div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-       <div class="different-hotels">
-        <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/villa.jpg" alt="hotel front">
-        <div class="different-hotels-div">
-        <h2>Homes & Villas</h2>
-        <p>Homes & Villas was designed to provide travelers with access to high-end vacation rentals, such as entire homes, villas, and luxury accommodations. The platform featured a curated selection of upscale and unique properties, with distinctive architectural features, stunning views, or premium amenities. We offered additional concierge services, which could include personalized check-in experiences, access to local recommendations, and assistance with planning activities and dining reservations.</p>
-        <button type="submit" class="btn">Join for Free</button>
-    </div>
-    </div>
+		</div>
+	</section>
 
-    <div class="back-to-top">
-    <button onclick="topFunction()" class="btn"> ⬆ Back to Top</button>
-    </div>
+	<section class="py-4">
+		<div class="container">
+			<div class="row justify-content-center">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#">1</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#">2</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#">3</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</section>
 
-  <hr class="footer-line">
+	<!-- Subscribe Panel -->
+	<section id="subscribe-panel">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2 text-center">
+					<h2>Subscribe</h2>
+					<p>To be sent our latest deals.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<form class="form-inline justify-content-center">
+						<div class="form-group mb-2 col-md-6 col-sm-6">
+							<label for="email" class="sr-only">Email</label>
+							<input type="email" class="form-control" id="email" placeholder="Your Email">
+						</div>
+						<button type="submit" class="btn btn-primary mb-2">Subscribe</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <div class="footer">
-        <div class="col-1">
-            <div>
-            <h3>How can we help?</h3>
-            <button class="btn">Request a Call</button>
-            <div class="social-icons">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-youtube"></i>
+	<footer class="pt-3" id="main-footer" role="contentinfo">
+		<div class="container pb-4">
+			<div class="row border-bottom my-3 py-3">
+				<div class="col-md-6">
+					<address class="">
+						Hotel Spoof U.S.A, 699 Mount Street, Munger, 48747 Michigan, United States
+					</address>
+				</div>
+				<div class="col-md-6">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+								<img src="images/flags/US.png"> English(US)
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">
+										<img src="images/flags/DE.png"> Deutsch</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/GB.png"> English(UK)</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/FR.png"> Français</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/RO.png"> Română</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/IT.png"> Italiano</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#">
+										<img src="images/flags/ES.png"> Español
+										<span class="label label-default">soon</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/BR.png"> Português
+										<span class="label label-default">soon</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/JP.png"> 日本語
+										<span class="label label-default">soon</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="images/flags/TR.png"> Türkçe
+										<span class="label label-default">soon</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>A Little About Us</h5>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore eos molestias quod sint ipsum possimus temporibus officia
+						iste perspiciatis consectetur in fugiat repudiandae cum. Totam cupiditate nostrum ut neque ab?</p>
+				</div>
+				<div class="col-md-6">
+					<h5>More Top Cities & Countries</h5>
+					<div class="row">
+						<div class="col-md-6">
+							<form>
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">Top Cities</label>
+									<select class="form-control" id="exampleFormControlSelect1">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<form>
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">Countries</label>
+									<select class="form-control" id="exampleFormControlSelect1">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<ul class="nav justify-content-center">
+							<li class="nav-item">
+								<a class="nav-link active" href="#">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i class="fa fa-linkedin"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i href="#" class="fa fa-google"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i href="#" class="fa fa-youtube"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i href="#" class="fa fa-instagram"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i href="#" class="fa fa-pinterest"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i href="#" class="fa fa-snapchat-ghost"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="container">
+							<div class="col-sm-12 p-0">
+								<h5 class="border-bottom pb-3">More information</h5>
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-4 col-md-4">
+									<ul class="nav flex-column footer-nav">
+										<li class="nav-item">
+											<a href="#">Terms and Conditions</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Legal Information</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Privacy Policy</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Site Map</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Cookie policy</a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-xs-6 col-sm-4 col-md-3">
+									<ul class="nav flex-column footer-nav">
+										<li class="nav-item">
+											<a href="#">Company</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Careers</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Press</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Investors</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Dubai</a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-sm-4 col-md-3">
+									<ul class="nav flex-column footer-nav">
+										<li class="nav-item">
+											<a href="#">Android App</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">IOS APP</a>
+										</li>
+										<li class="nav-item">
+											<a href="#">Window Store</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="copyright border-top pb-4">
+			<div class="">
+				<h3 class="text-center">Spoof Hotels</h3>
+				<p class="text-center">
+					<small class="block">Copyright 2018 Spoof Hotels&copy; | All rights reserved. </small>
+					<small class="block">Designed by
+						<a href="#" target="_blank">UndreamtMayhem</a> | Demo Images:
+						<a href="#" target="_blank">UndreamtMayhem</a>
+					</small>
 
-            </div>
-
-        </div>
-        </div>
-        <div class="col-2">
-            <a href="#">Travel Inspiration</a>
-            <a href="#">Pet-Friendly Stays</a>
-            <a href="#">Gift Card</a>
-            <a href="#">Global Privacy Statement</a>
-            <a href="#">Site Map</a>
-            <a href="#">Development</a>
-            <a href="#">Media</a>
-            <a href="#">Blog</a>
-            <a href="#">Web Accessibility</a>
-            <a href="#">Customer Support</a>
-        </div>
-        <div class="col-3">
-            <a href="#">Cookies Statement</a>
-            <a href="#">Hotel Hotline</a>
-            <a href="#">Corporate Responsibility</a>
-            <a href="#">Hotel Honors Discount Terms & Conditions</a>
-            <a href="#">Modern Slavery and Human Trafficking</a>
-            <a href="#">Do Not Sell My Personal Information</a>
-            <a href="#">Personal Data Requests</a>
-            <a href="#">Site Usage Agreement</a>
-        </div>
-    </div>
-    <script src="script.js"></script>
-    </body>
-    </html>
+				</p>
+				<ul class="nav justify-content-center">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">
+							<i class="fa fa-twitter"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-facebook"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-linkedin"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i href="#" class="fa fa-google"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i href="#" class="fa fa-youtube"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i href="#" class="fa fa-instagram"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i href="#" class="fa fa-pinterest"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i href="#" class="fa fa-snapchat-ghost"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+    
+     </body>
+</html>

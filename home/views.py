@@ -3,11 +3,16 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages 
 from django.contrib.auth import authenticate, login, logout
+from .models import Amenities, Hotel
+
 
 # Create your views here.
 
 def home (request):
-    return render(request, 'hotel.html')
+    amenities_obj= Amenities.objects.all()
+    hotel_obj = Hotel.objects.all()
+    context= {'aminities_obj':amenities_obj,'hotel_obj':hotel_obj}
+    return render(request, 'hotel.html', context)
 
 
 

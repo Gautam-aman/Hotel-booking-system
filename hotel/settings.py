@@ -45,6 +45,13 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += EXTERNAL_APPS
 
+import os
+STATIC_URL = '/static/'
+STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = ( os.path.join(BASE_DIR,'public/static'),)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/static') # 'data' is my media folder
+MEDIA_URL = '/media/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
