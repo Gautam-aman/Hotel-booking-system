@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Website</title>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Roboto Slab', serif;
+    scroll-behavior: smooth;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+.container {
+    max-width: 90%;
+    margin: auto;
+    order: 1;
+}
+
+
+.head_container {
+    max-width: 90%;
+    margin: auto;
+}
+
+
+header {
+    height: 14vh;
+    background-color: white;
+    z-index:1000
+}
+
+.logo img {
+    width: 120px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: black;
+
+}
+
+header ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header ul li {
+    margin-left: 3rem;
+}
+
+header ul li a {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: black;
+    transition: 0.5s;
+}
+
+header ul li a:hover {
+    color: #C1B086;
+}
+
+#navigation-menu    {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 768px) {
+    header ul {
+        display: block;
+        position: fixed;
+        left: -100%;
+        top: 7rem;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.5s;
+        box-shadow: 0 10px 27px #000;
+        z-index: 20;
+    }
+
+
+    header ul.active {
+        left: 0%;
+    }
+
+    header ul li {
+        margin: 2.5rem 0;
+    }
+
+    header ul li a {
+        color: black;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+
+    }
+
+}
+
+.location-ask   {
+    margin: 130px 3%;
+}
+
+
+.where-to   {
+    font-weight: bold;
+}
+
+.required   {
+    font-weight: lighter;
+}
+
+.location   {
+    width: 840.53px;
+    height: 43.2px;
+
+}
+
+
+input{
+    height: 30px;
+    border-color: #E6E6E6;
+}
+
+.booking{
+    display: inline-block;
+}
+
+
+.btn find-hotel {
+    color: white;
+    background-color: black;
+}
+
+.btn{
+  backface-visibility: hidden;
+  background-color: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-size: 90%;
+  height: 44px;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 10px;
+  width: 19vh;
+
+}
+
+
+.date-popup {
+    width: 700px;
+    height: 550px;
+    background: #fff;
+    border-style: solid;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.date-open-popup {
+    visibility: visible;
+    top: 55%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.date-popup h2{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.date-popup button  {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.room-popup {
+    width: 400px;
+    background: #fff;
+    border-style: solid;
+    border-radius: 6px;
+    position: absolute;
+    margin-top: 30px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.room-open-popup {
+    visibility: visible;
+    top: 40%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.room-popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.room-popup button  {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.rates-popup {
+    width: 400px;
+    background: #fff;
+    border-style: solid;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    margin-top: 30px;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.rates-open-popup {
+    visibility: visible;
+    top: 55%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.rates-popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.rates-popup button  {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.find-hotels {
+    background-color: #000;
+    color: #fff
+}
+
+
+.container-room {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+input[type="number"] {
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #d8d8d8;
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    width: 80px;
+    outline: none;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20viewBox%3D%220%200%2050%2067%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20stroke-width%3D%222%22%3E%3Cline%20x1%3D%221%22%20x2%3D%2250%22%20y1%3D%2233.5%22%20y2%3D%2233.5%22%20stroke%3D%22%23D8D8D8%22%2F%3E%3Cpolyline%20transform%3D%22translate(25%2020)%20rotate(45)%20translate(-25%20-20)%22%20points%3D%2219%2026%2019%2014%2032%2014%22%20stroke%3D%22%23000%22%2F%3E%3Cpolyline%20transform%3D%22translate(25%2045)%20rotate(225)%20translate(-25%20-45)%22%20points%3D%2219%2052%2019%2039%2032%2039%22%20stroke%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    caret-color: transparent;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    opacity: 1 !important;
+    background: transparent !important;
+    border-width: 0px;
+    margin: 0;
+    border-left: 1px solid #d8d8d8;
+    height: 34px;
+    width: 23px;
+    cursor: pointer;
+  }
+
+
+  input[type=text], textarea {
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD;
+  }
+
+  input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 5px rgb(15, 201, 253);
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid rgb(15, 201, 253);
+  }
+
+
+
+  .special-rates-checkbox{
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+  }
+
+
+
+  .hotel-front {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .hotel-front-container {
+    padding-top: 50px;
+  }
+
+  .welcome-text h2 {
+    padding-top: 30px;
+    text-align: center;
+    font-size:xx-large;
+
+  }
+
+  .welcome-text p {
+    color: #333;
+    padding-top: 10px;
+    text-align: center;
+    font-size: large;
+  }
+
+  .welcome-text button {
+    color: #fff;
+    background-color: #000;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.subheading {
+    padding-top: 100px
+}
+
+.subheading h2 {
+    padding-top: 30px;
+    font-size:xx-large;
+  }
+
+  .subheading p {
+    color: #333;
+    padding-top: 10px;
+    font-size: large;
+  }
+
+
+
+
+  .destinations-images {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 30px;
+    max-width: 100%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+
+
+  }
+
+  .destinations-images img {
+    width: 21.5vw;
+    height: 60vh;
+  }
+
+
+  .country {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+
+  }
+
+  .country img {
+    filter: brightness(80%);
+  }
+
+  .country-text {
+    font-size: 39px;
+    font-family: 'Bebas Neue', sans-serif;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 250ms;
+  }
+
+
+  .hover-country-text {
+    top: 50%;
+  }
+
+
+  .experience-images {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 30px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+
+
+  }
+
+  .experience-images img {
+    width: 29vw;
+    height: 39.5vh;
+    min-width: 100px;
+  }
+
+
+  .experience {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+
+  }
+
+  .experience img {
+    filter: brightness(80%);
+    padding-top: 20px;
+  }
+
+  .experience-text {
+    font-size: 39px;
+    font-family: 'Bebas Neue', sans-serif;
+    position: absolute;
+    width: 100%;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 250ms;
+  }
+
+  .hover-experience-text {
+    top: 55%;
+  }
+
+  .different-hotels {
+    padding-top: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+
+  }
+
+  .different-hotels img{
+    width: 49.243vw ;
+    height: 66.488vh;
+  }
+
+  .different-hotels div{
+    padding-left: 50px;
+  }
+
+  .different-hotels h2 {
+    font-size: 36px;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  .different-hotels p {
+    padding-top: 20px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 30px;
+  }
+
+  .different-hotels button {
+    background-color: #000;
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .back-to-top {
+    padding-top: 80px;
+    text-align: center;
+  }
+
+  .back-to-top button{
+    background-color: #000;
+    color: #fff;
+    width: 15%;
+  }
+
+
+  .footer-line {
+    margin-top: 50px;
+    border: 0;
+    border-top: 1px solid #c9c7c7;
+  }
+
+
+  .footer {
+    width: 100%;
+    padding: 50px 5%;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 8fr 3fr 3fr;
+    align-items: start;
+
+  }
+
+
+.col-1 button {
+    border: 0;
+    background-color: #104C97;
+    color: #fff;
+    width: 162px;
+}
+
+
+
+  .col-2 a{
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    padding-top: 12px;
+    color: #686868;
+
+  }
+
+  .col-3 a{
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    padding-top: 12px;
+    color: #686868;
+  }
+
+  .footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+
+  }
+
+  .social-icons {
+    margin-top: 30px;
+  }
+
+  .social-icons i{
+    font-size: 22px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1208px) {
+    .destinations-images img{
+      width: 404.59px;
+      height: 539.45px;
+    }
+
+    .experience-images img {
+      width: 404.59px;
+      height: 269.72;
+    }
+
+    .different-hotels {
+      display: block;
+
+    }
+
+    .different-hotels img{
+      width: 100%;
+      height: auto;
+
+    }
+  }
+
+    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b8a58bc95c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
+</head>
+<body>
+    <header class="header" id="navigation-menu">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/logo.jpeg" alt="logo image">
+                </a>
+                <ul class="nav-menu">
+                    <li> <a href="#home" class="nav-list">Hotels</a> </li>
+                    <li> <a href="#destinations" class="nav-list">Destinations</a> </li>
+                    <li> <a href="#offers" class="nav-list">Offers</a> </li>
+                    <li> <a href="#travel-experience" class="nav-list">Travel Experiences</a> </li>
+                    <li> <a href="#meetings-events" class="nav-list">Meeting & Events</a> </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+
+    <div class="location-ask">
+        <span class="where-to">Where to?</span> <span class="required">(Required) </span> <br />
+    <div class="booking">
+
+            <label class="location-label"></label>
+            <input type="text" class="location" placeholder="City, state, location, or airport" required>
+
+            <button type="submit" class="btn date" onclick="dateOpenPopup()">Date</button>
+            <div class="date-popup" id="date-popup">
+                <h2>Select Date</h2>
+                <input type="text" id="datepicker">
+                <button type="button" onclick="dateClosePopup()">OK</button>
+            </div>
+
+            <button type="submit" class="btn room" onclick="roomOpenPopup()">Rooms & Guests</button>
+            <div class="room-popup" id="room-popup">
+                <h2>Rooms and Guests</h2>
+                <div class="container-room">
+                <form>
+                    <label for="rooms">Rooms:</label>
+                    <input type="number" id="rooms" value=1><br><br>
+                    <label for="adults">Adults:</label>
+                    <input type="number" id="adults" value=1><br><br>
+                    <label for="kids">Kids:</label>
+                    <input type="number" id="kids" value=0><br><br>
+                </form>
+                <button type="button" onclick="roomClosePopup()">OK</button>
+
+            </div>
+            </div>
+            <button type="submit" class="btn special-rates" onclick="ratesOpenPopup()">Special Rates</button>
+            <div class="rates-popup" id="rates-popup">
+                <h2>Special Rates</h2>
+                <form class="special-rates-checkbox">
+                    <label class="special-rates-checkbox">Use Points
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="special-rates-checkbox">Travel Agents
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="special-rates-checkbox">AAA Rate
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="special-rates-checkbox">AARP Rate
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="special-rates-checkbox">Senior Rate
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="special-rates-checkbox">Government / Military Rates
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                </form>
+                    <form class="special-rates-text">
+
+                        <label for="promotion-code">Promotion Code</label><br>
+                        <input type="text" id="promotion-code"><br><br>
+                        <label for="group-code">Group Code</label><br>
+                        <input type="text" id="group-code"><br><br>
+                        <label for="corporate-account">Corporate Account</label><br>
+                        <input type="text" id="corporate-account"><br><br>
+
+                    </form>
+
+
+                <button type="button" onclick="ratesClosePopup()">OK</button>
+            </div>
+
+            <button type="submit" class="btn find-hotels">Find a Hotel</button>
+
+    </div>
+
+    <div class="hotel-front-container">
+        <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/hotel_front.jpg" alt="picture of the front of the hotel" class="hotel-front">
+       </div>
+
+       <div class="welcome-text">
+        <h2>Beautiful Brazil</h2>
+        <p>Nestled amidst the lush tropical beauty of Brazil, this hotel offers a perfect blend of luxury, comfort, and the enchanting allure of the country's vibrant culture.</p>
+        <button class="btn">Explore More</button>
+       </div>
+
+       <div class="subheading">
+        <h2>Exhilarating Destinations</h2>
+        <p>Here is a journey through some of the most wonderful places on Earth.</p>
+       </div>
+
+       <div class="destinations-images">
+
+        <div class="country" id="italy-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/italy-hotel.jpg" alt="italy hotel" >
+            <div class="country-text" id="italy-text">ITALY</div>
+        </div>
+        <div class="country" id="portugal-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/portugal-hotel.jpg" alt="portugal hotel" >
+            <div class="country-text" id="portugal-text">PORTUGAL</div>
+        </div>
+        <div class="country" id="japan-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/japan-hotel.jpg" alt="japan hotel" >
+            <div class="country-text" id="japan-text">JAPAN</div>
+        </div>
+        <div class="country" id="egypt-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/egypt-hotel.jpg" alt="egypt hotel" >
+            <div class="country-text" id="egypt-text">EGYPT</div>
+        </div>
+       </div>
+
+       <div class="subheading">
+        <h2>Experience Something New</h2>
+        <p>The unknown beckons us, and our imaginations run wild with possibilities</p>
+       </div>
+
+       <div class="experience-images">
+        <div class="experience" id="discount-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/discount.jpg" alt="discount picture" >
+            <div class="experience-text" id="discount-text">ADVANCE PURCHASE DISCOUNT</div>
+        </div>
+        <div class="experience" id="points-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/points.jpg" alt="points picture" >
+            <div class="experience-text" id="points-text">MULTIPLY YOUR POINTS</div>
+        </div>
+        <div class="experience" id="parking-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/parking.jpg" alt="parking picture" >
+            <div class="experience-text" id="parking-text">PARKING & STAY</div>
+        </div>
+        <div class="experience" id="plan-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/plan.jpg" alt="plan picture" >
+            <div class="experience-text" id="plan-text">PLAN AND SAVE</div>
+        </div>
+        <div class="experience" id="first-time-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/first-time.jpg" alt="first-time picture" >
+            <div class="experience-text" id="first-time-text">FIRST TIME DISCOUNTS</div>
+        </div>
+        <div class="experience" id="members-div">
+            <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/front-desk.jpg" alt="members picture" >
+            <div class="experience-text" id="members-text">MEMBERS GET MORE</div>
+        </div>
+       </div>
+
+       <div class="different-hotels">
+        <img src="https://raw.githubusercontent.com/MichaelZhou334/Hotel-Landing-Page/main/images/villa.jpg" alt="hotel front">
+        <div class="different-hotels-div">
+        <h2>Homes & Villas</h2>
+        <p>Homes & Villas was designed to provide travelers with access to high-end vacation rentals, such as entire homes, villas, and luxury accommodations. The platform featured a curated selection of upscale and unique properties, with distinctive architectural features, stunning views, or premium amenities. We offered additional concierge services, which could include personalized check-in experiences, access to local recommendations, and assistance with planning activities and dining reservations.</p>
+        <button type="submit" class="btn">Join for Free</button>
+    </div>
+    </div>
+
+    <div class="back-to-top">
+    <button onclick="topFunction()" class="btn"> ⬆ Back to Top</button>
+    </div>
+
+  <hr class="footer-line">
+
+    <div class="footer">
+        <div class="col-1">
+            <div>
+            <h3>How can we help?</h3>
+            <button class="btn">Request a Call</button>
+            <div class="social-icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-youtube"></i>
+
+            </div>
+
+        </div>
+        </div>
+        <div class="col-2">
+            <a href="#">Travel Inspiration</a>
+            <a href="#">Pet-Friendly Stays</a>
+            <a href="#">Gift Card</a>
+            <a href="#">Global Privacy Statement</a>
+            <a href="#">Site Map</a>
+            <a href="#">Development</a>
+            <a href="#">Media</a>
+            <a href="#">Blog</a>
+            <a href="#">Web Accessibility</a>
+            <a href="#">Customer Support</a>
+        </div>
+        <div class="col-3">
+            <a href="#">Cookies Statement</a>
+            <a href="#">Hotel Hotline</a>
+            <a href="#">Corporate Responsibility</a>
+            <a href="#">Hotel Honors Discount Terms & Conditions</a>
+            <a href="#">Modern Slavery and Human Trafficking</a>
+            <a href="#">Do Not Sell My Personal Information</a>
+            <a href="#">Personal Data Requests</a>
+            <a href="#">Site Usage Agreement</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    </body>
+    </html>
